@@ -155,9 +155,9 @@ class Variable:
         return self.assignedValue != None
     
     def assign(self, value):
-        '''Used by bt_search. When we assign we remove all other values
+        """Used by bt_search. When we assign we remove all other values
            values from curdom. We save this information so that we can
-           reverse it on unassign'''
+           reverse it on unassign"""
 
         if self.is_assigned() or not self.in_cur_domain(value):
             print("ERROR: trying to assign variable", self, 
@@ -167,7 +167,7 @@ class Variable:
         self.assignedValue = value
 
     def unassign(self):
-        '''Used by bt_search. Unassign and restore old curdom'''
+        """Used by bt_search. Unassign and restore old curdom"""
         if not self.is_assigned():
             print("ERROR: trying to unassign variable", self, " not yet assigned")
             return
@@ -182,8 +182,8 @@ class Variable:
     #
 
     def value_index(self, value):
-        '''Domain values need not be numbers, so return the index
-           in the domain list of a variable value'''
+        """Domain values need not be numbers, so return the index
+           in the domain list of a variable value"""
         return self.dom.index(value)
 
     def __repr__(self):
@@ -193,18 +193,20 @@ class Variable:
         return("Var--{}".format(self.name))
 
     def print_all(self):
-        '''Also print the variable domain and current domain'''
+        """Also print the variable domain and current domain"""
         print("Var--\"{}\": Dom = {}, CurDom = {}".format(self.name, 
                                                              self.dom, 
                                                              self.curdom))
-class Constraint: 
-    '''Class for defining constraints variable objects specifes an
+
+
+class Constraint:
+    """Class for defining constraints variable objects specifes an
        ordering over variables.  This ordering is used when calling
        the satisfied function which tests if an assignment to the
-       variables in the constraint's scope satisfies the constraint'''
+       variables in the constraint's scope satisfies the constraint"""
 
-    def __init__(self, name, scope): 
-        '''create a constraint object, specify the constraint name (a
+    def __init__(self, name, scope):
+        """create a constraint object, specify the constraint name (a
         string) and its scope (an ORDERED list of variable objects).
         The order of the variables in the scope is critical to the
         functioning of the constraint.
@@ -216,8 +218,8 @@ class Constraint:
 
         NOTE: This is a very space expensive representation...a proper
         constraint object would allow for representing the constraint
-        with a function.  
-        '''
+        with a function.
+        """
 
         self.scope = list(scope)
         self.name = name
@@ -230,7 +232,7 @@ class Constraint:
         self.sup_tuples = dict()
 
     def add_satisfying_tuples(self, tuples):
-        '''We specify the constraint by adding its complete list of satisfying tuples.'''
+        """We specify the constraint by adding its complete list of satisfying tuples."""
         for x in tuples:
             t = tuple(x)  #ensure we have an immutable tuple
             if not t in self.sat_tuples:
@@ -244,7 +246,7 @@ class Constraint:
                 self.sup_tuples[(var,val)].append(t)
 
     def get_scope(self):
-        '''get list of variables the constraint is over'''
+        """get list of variables the constraint is over"""
         return list(self.scope)
 
     def check(self, vals):
@@ -255,6 +257,7 @@ class Constraint:
            are must be ordered in the same order as the list of
            variables in the constraints scope'''
         return tuple(vals) in self.sat_tuples
+
 
     def get_n_unasgn(self):
         '''return the number of unassigned variables in the constraint's scope'''
