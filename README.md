@@ -57,3 +57,10 @@ All models need to return a CSP object, and a list of lists of Variable objects 
 - `nary_ad_grid`: A model of a FunPuzz grid (without cage constraints) built using only n-ary all-different constraints for both the row and column constraints.
 
 - `caged_csp_model`: A model built using your choice of (1) binary binary not-equal, or (2) n-ary all-different constraints for the grid, together with (3) FunPuzz cage constraints. That is, you will choose one of the previous two grid models and expand it to include FunPuzz cage constraints.
+
+## Mark Breakdown
+Overall: 100% <br/>
+Propagators: 50/50<br/>
+Binary all-different model: 6/6<br/>
+N-ary all-different model: 6/6<br/>
+Complete FunPuzz model: 10/10<br/>
